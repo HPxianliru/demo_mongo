@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="buildOptions" class="com.wanlianjin.cic.mongo.util.BuildOptions">
+        <property name="hosts" value="${mongo.hostport}"/>
+        <property name="databaseName" value="${mongo.defaultDbName}"/>
+        <property name="userName" value="${mongo.userName}"/>
+        <property name="password" value="${mongo.password}"/>
+    </bean>
+
+    <bean id="mongoSession" class="com.wanlianjin.cic.mongo.util.MongoSession">
+        <constructor-arg name="buildOptions" ref="buildOptions"></constructor-arg>
+    </bean>
+
+    <bean id="mongoSequence" class="com.wanlianjin.cic.mongo.util.MongoSequence">
+        <constructor-arg ref="mongoSession"></constructor-arg>
+    </bean>
+
+    <bean id="mongoTemplate" class="com.wanlianjin.cic.mongo.util.MongoTemplate">
+        <constructor-arg ref="mongoSession"></constructor-arg>
+        <property name="sequence" ref="mongoSequence"/>
+    </bean>
+
+</beans>

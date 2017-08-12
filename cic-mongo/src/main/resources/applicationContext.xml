@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 在基于主机方式配置Spring的配置文件中，你可能会见到<context:annotation-config/>这样一条配置，他的作用是式地向 
+		Spring 容器注册 AutowiredAnnotationBeanPostProcessor、CommonAnnotationBeanPostProcessor、 
+		PersistenceAnnotationBeanPostProcessor 以及 RequiredAnnotationBeanPostProcessor 
+		这 4 个BeanPostProcessor。 注册这4个 BeanPostProcessor的作用，就是为了你的系统能够识别相应的注解。 1.如果你想使用@Autowired注解，那么就必须事先在 
+		Spring 容器中声明 AutowiredAnnotationBeanPostProcessor Bean 2.如果想使用@ Resource 
+		、@ PostConstruct、@ PreDestroy等注解就必须声明CommonAnnotationBeanPostProcessor 3.如果想使用@PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor的Bean。 
+		4.如果想使用 @Required的注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean -->
+	<!-- 注解一般都会配置扫描包路径选项 -->
+	<!-- 定义受环境影响易变的变量 -->
+	<!-- 属性文件读入 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:conf/mongodb.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<import resource="app-mongo.xml"/>
+	<import resource="mongo/mongoDao.xml"/>
+</beans>

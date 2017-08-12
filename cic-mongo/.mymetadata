@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="cic-mongo"
+  id="myeclipse.1483930656070"
+  context-root="/cic-mongo"
+  j2ee-spec="6.0"
+  archive="cic-mongo.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
